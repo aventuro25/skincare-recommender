@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/base.css" type="txt/css">
+        <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+<style>
+    #login-form {
+        margin: 0 auto;
+    }
+    #buttons {
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 20px;
+    }
+    #header{
+        margin: 0 auto;
+        text-align: center;
+    }
+</style>
+    </head>
+
+<body>
+        <div th:replace="~{shared :: nav}"></div>
+    <p th:if="${#request.getParameter('login_error') == '1'}" class="error">
+                Wrong id or password!</p>
+    <div class="container">
+        <h2 id="header">Sign in:</h2>
+        <form id="login-form" type="form" method="POST" action="/login">
+                <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+            <label for="username">User Name:</label>
+            <input class="form-control" name="username" type="text">
+            <div th:if="${#fields.hasErrors('guestModel.guestid')}">
+                <p th:each="error : ${#fields.errors('guestModel.guestid')}" class="alert alert-danger" th:text="${error}">
+                                Invalid username </p>
+            </div>
+            <label for="password">Password:</label>
+            <input class="form-control" name="password" type="password">
+            <div th:if="${#fields.hasErrors('guestModel.password')}">
+                    <p th:each="error : ${#fields.errors('guestModel.password')}" class="alert alert-danger" th:text="${error}">
+                        Invalid username </p>
+            </div>
+            <div id="buttons">
+                    <button type="submit" class="btn btn-dark">Go!</button>
+                    <a href="/" class="btn btn-dark">Cancel</a>
+            </div>
+            
+            </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+</html>

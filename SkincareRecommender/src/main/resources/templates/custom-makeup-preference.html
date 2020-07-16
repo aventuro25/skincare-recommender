@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Makeup Preferences</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/base.css" type="txt/css">
+        <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+    <style>
+        #test {
+            margin: 0 auto;
+            text-align: center;
+        }
+        #checkboxes, #attribute-checkboxes, #finish, #skintype, #coverage, #crueltyfree{
+            margin: 0 auto;
+        
+        }
+        h2{
+            margin:0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+        <div th:replace="~{shared :: nav}"></div>
+    <div class="container">
+        <h2>Please Enter Your Makeup Preferences</h2>
+        <form type="form" method="POST">
+                <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+           
+            <div class="row">
+                <div id="skintype" class="col-md-6">
+                    <p>What's your skin type?</p>
+                    <select th:selected="${guestPreference.skintype.skintypeid}" id="skintype" class="form-control" name="skintype">
+                        <option th:each="skintype : ${skintypes}" th:value="${skintype.skintypeid}"
+                            th:text="${skintype.skintypename}">Type</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div id="coverage" class="col-md-6">
+                    <p>What coverage do you prefer?</p>
+                    <select th:selected="${guestPreference.coverage.coverageid}" id="coverage" class="form-control" name="coverage">
+                        <option th:each="coverage : ${coverages}" th:value="${coverage.coverageid}"
+                            th:text="${coverage.coveragetype}">Type</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div id="finish" class="col-md-6">
+                    <p>What finish do you prefer?</p>
+                    <select th:selected="${guestPreference.finish.finishid}" id="finish" class="form-control" name="finish">
+                        <option th:each="finish : ${finishes}" th:value="${finish.finishid}"
+                            th:text="${finish.finishtype}">Type</option>
+                    </select>
+                </div>
+            </div>
+            <div id="checkboxes" class="row col-md-6">           
+                <div id="attribute-checkboxes" class="col-md-6">
+                    <p>Anything you'd like to avoid?</p>
+                    <div id="attribute" class="form-check" th:each="attribute : ${attributes}">
+                        <input  th:checked="${guestPreference.hasAttribute(attribute.attributeid)}" class="form-check-input" type="checkbox" th:value="${attribute.attributeid}" name="a">
+                        <label class="form-check-label" for="attributeid" th:text="${attribute.attributename}">
+                            Ingredient Attribute
+                        </label>
+                    </div>
+                </div>
+                <div id="crueltyfree" class="col-md-6">
+                        <div class="form-check">
+                            <input th:checked="${guestPreference.crueltyfree}" class="form-check-input" type="checkbox" name="crueltyfree">
+                            <label class="form-check-label" for="crueltyfree"> Cruelty Free?
+                            </label>
+                        </div>
+                    </div>
+            </div>
+            <div id="test">
+                <button type="submit" class="btn btn-dark">Calculate!</button>
+                <a href="/" class="btn btn-dark">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

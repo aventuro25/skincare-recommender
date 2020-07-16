@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/base.css" type="txt/css">
+    <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div th:replace="~{shared :: nav}"></div>
+    <div class="container">
+        <h3>Your results: (ordered by compatibility)</h3>
+            <form type="form" method="POST" th:action="@{/preferences/simple/save}">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cleanser</th>
+                                <th>Moisturizer</th>
+                                <th>Eye Cream</th>
+                                <th>Score</th>
+                                <th sec:authorize="hasAuthority('USER')">Save?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="rec : ${recs}">
+                                <td>
+                                    <p><a target="_blank" th:href="${rec.cleanser.url}" th:text="${rec.cleanser.productname}">Product</a></p>
+                                    <p th:text="${rec.cleanser.brand.brandname}">
+                                            <p th:text="${rec.cleanser.price}"></p>
+                                </td>
+                                <td>
+                                        <p><a target="_blank" th:href="${rec.moisturizer.url}" th:text="${rec.moisturizer.productname}">Product</a></p>
+                                        <p th:text="${rec.moisturizer.brand.brandname}">
+                                                <p th:text="${rec.moisturizer.price}"></p>
+                                </td>
+                                <td>
+                                        <p><a target="_blank" th:href="${rec.eyecream.url}" th:text="${rec.eyecream.productname}">Product</a></p>
+                                        <p th:text="${rec.eyecream.brand.brandname}">
+                                                <p th:text="${rec.eyecream.price}"></p>
+                                </td>
+                                <td>
+                                        <p th:text="${rec.compatibility}">Product</p>       
+                                </td>
+                                <td>
+                                    <div sec:authorize="hasAuthority('USER')" class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="savedRecs" th:value="${rec.cleanser.itemnumber}+'_'+${rec.moisturizer.itemnumber}+'_'+${rec.eyecream.itemnumber}"> 
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <!-- <div class="row">
+                        <div class="card col-4" th:each="rec : ${recs}">
+                            <a th:href="${rec.url}">
+                                <img th:src="${rec.imageurl}" class="card-img-top" th:alt="${rec.productname}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${rec.productname}">Card title</h5>
+                                <h5 class="card-title" th:text="${rec.brand.brandname}">Card title</h5>
+                            </div>
+                        </div>
+                    </div> -->
+                    <a href="/" class="btn btn-dark">Home</a>
+                    <button type="submit" sec:authorize="hasAuthority('USER')" class="btn btn-dark">Save</button>
+                </form>
+    </div>
+</body>
+
+</html>

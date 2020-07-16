@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: my.app.skincarerecommender.repositories.BrandDaoDBTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.374 s - in my.app.skincarerecommender.repositories.BrandDaoDBTest

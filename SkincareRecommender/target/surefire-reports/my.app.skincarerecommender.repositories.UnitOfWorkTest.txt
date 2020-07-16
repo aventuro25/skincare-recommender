@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: my.app.skincarerecommender.repositories.UnitOfWorkTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.497 s - in my.app.skincarerecommender.repositories.UnitOfWorkTest

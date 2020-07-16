@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a new Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/base.css" type="txt/css">
+    <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+    <style>
+         #concern-checkboxes, #coverage-checkboxes, #skintype-checkboxes {
+        margin: 0 auto;
+    }
+    #test{
+        margin: 0 auto;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+        <div th:replace="~{shared :: nav}"></div>
+    <div class="container">
+        <h1>Add a new product!</h1>
+        <p>Please note: this software is still in development, so please be patient.</p>
+        <form type="form" method="POST">
+                <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+           
+                <label for="url">Product Url:</label>
+                <input class="form-control" name="url" type="text">
+                <div th:if="${#fields.hasErrors('productModel.url')}">
+                        <p th:each="error : ${#fields.errors('productModel.url')}" class="alert alert-danger" th:text="${error}">
+                            Invalid url </p>
+                    </div>
+                    <label for="category">Choose a category:</label>
+                    <select class="form-control" name="category">
+                        <option th:each="category : ${categories}" th:value="${category.categoryid}"
+                            th:text="${category.categorytype}">Type</option>
+                    </select>
+                    <!-- this should be a popup if the category is makeup? -->
+                    <label for="finish">Choose a Finish:</label>
+                    <select class="form-control" name="finish">
+                        <option th:each="finish : ${finishes}" th:value="${finish.finishid}"
+                            th:text="${finish.finishtype}">Type</option>
+                    </select>
+                    <div class="row">
+                            <div id="concern-checkboxes" col="col-md-3">
+                                    <h4>What concerns does this product solve?</h4>
+                                    <div class="form-check" th:each="concern : ${concerns}">
+                                        <input class="form-check-input" type="checkbox" th:value="${concern.concernid}" name="concerns">
+                                        <label class="form-check-label" for="concerns" th:text="${concern.concerntype}"> Concern
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="coverage-checkboxes" class="col-md-3">
+                                    <h4>What coverages does this product have?</h4>
+                                    <div class="form-check" th:each="coverage : ${coverages}">
+                                        <input class="form-check-input" type="checkbox" th:value="${coverage.coverageid}" name="coverages">
+                                        <label class="form-check-label" for="coverages" th:text="${coverage.coveragetype}"> 
+                                            Coverage
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="skintype-checkboxes" class="col-md-3">
+                                        <h4>What skintypes does this product cater?</h4>
+                                        <div class="form-check" th:each="skintype : ${skintypes}">
+                                            <input class="form-check-input" type="checkbox" th:value="${skintype.skintypeid}" name="skintypes">
+                                            <label class="form-check-label" for="skintypes" th:text="${skintype.skintypename}"> 
+                                                Skintype
+                                            </label>
+                                        </div>
+                                    </div>
+                    </div>
+                    <div id="test">
+                            <button type="submit" class="btn btn-dark">Add!</button>
+                            <a href="/" class="btn btn-dark">Cancel</a>
+                    </div>
+                    
+        </form>
+        
+
+    </div>
+    
+</body>
+</html>

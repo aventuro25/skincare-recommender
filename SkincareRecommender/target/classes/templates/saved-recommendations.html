@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Saved Recommendations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/base.css" type="txt/css">
+    <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+
+</head>
+<div th:replace="~{shared :: nav}"></div>
+
+<body>
+    <p>Makeup Recommendations: </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${guestProducts}">
+                <td>
+                    <a target="_blank" th:href="${p.url}" th:text="${p.productname}">Username
+                    </a>
+                </td>
+                <td th:text="${p.brand.brandname}">Joe</td>
+                <td th:text="${p.category.categorytype}">Joe</td>
+                <td th:text="${p.price}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Skincare Recommendations: </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cleanser</th>
+                <th>Moisturizer</th>
+                <th>Eye Cream</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="rec : ${sets}">
+                <td>
+                    <p><a target="_blank" th:href="${rec.product1.url}"
+                            th:text="${rec.product1.productname}">Product</a></p>
+                    <p th:text="${rec.product1.brand.brandname}">
+                        <p th:text="${rec.product1.price}"></p>
+                </td>
+                <td>
+                    <p><a target="_blank" th:href="${rec.product2.url}"
+                            th:text="${rec.product2.productname}">Product</a></p>
+                    <p th:text="${rec.product2.brand.brandname}">
+                        <p th:text="${rec.product2.price}"></p>
+                </td>
+                <td>
+                    <p><a target="_blank" th:href="${rec.product3.url}"
+                            th:text="${rec.product3.productname}">Product</a></p>
+                    <p th:text="${rec.product3.brand.brandname}">
+                        <p th:text="${rec.product3.price}"></p>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    <p>Makeup Recommendations: </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Primer</th>
+                <th>Foundation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="rec : ${makeup}">
+                <td>
+                    <p><a target="_blank" th:href="${rec.product1.url}"
+                            th:text="${rec.product1.productname}">Product</a></p>
+                    <p th:text="${rec.product1.brand.brandname}">
+                        <p th:text="${rec.product1.price}"></p>
+                </td>
+                <td>
+                    <p><a target="_blank" th:href="${rec.product2.url}"
+                            th:text="${rec.product2.productname}">Product</a></p>
+                    <p th:text="${rec.product2.brand.brandname}">
+                        <p th:text="${rec.product2.price}"></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

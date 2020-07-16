@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Skincare Assistant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/base.css" type="txt/css">
+    <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+    <style>
+        #simple,
+        #base,
+        #routine {
+            margin: 0 auto;
+            text-align: center;
+            padding: 15px;
+        }
+
+        #title {
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+        #simple-button, #base-button, #routine-button{
+            padding-bottom: 20px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div th:replace="~{shared :: nav}"></div>
+    <div class="container">
+        <h1 id="title">Your Skincare Assistant</h1>
+
+        <div class="row">
+            <div id="simple" class="col-md-6">
+                <p>Looking for a simple skincare set?</p>
+                <div id="#simple-button">
+                    <a class="btn btn-dark" href="/preferences/simple">Get Started!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="base" class="col-md-6">
+                <p>Struggling to find the perfect base for your foundation?</p>
+                <div id="#base-button">
+                    <a class="btn btn-dark" href="/foundation-preferences">I can help!</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div id="routine" class="col-md-6">
+                <p>Want me to find the best base routine for your makeup?</p>
+                <div id="#routine-button">
+                    <a class="btn btn-dark" href="/preferences/makeup/full">Let's do it!</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--Container-->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

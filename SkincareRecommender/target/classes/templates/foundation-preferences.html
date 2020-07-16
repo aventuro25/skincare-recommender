@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}" /> -->
+    <title>Preferences</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/base.css" type="txt/css">
+        <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+</head>
+<style>
+    #concerns {
+        display: none;
+    }
+
+    #Brand {
+        margin: 0 auto;
+        padding-top: 10px;
+    }
+
+    #product {
+
+        padding-top: 10px;
+    }
+
+    #find-products,
+    #show-preferences {
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 45px;
+    }
+</style>
+
+<body>
+        <div th:replace="~{shared :: nav}"></div>
+    <div class="container">
+        <form>
+            <div class="row">
+
+                <div id="Brand" class="col-md-6">
+                    <p>Select the brand of your favorite foundation:</p>
+                    <select id="brandid" name="brand.brandid" class="form-control">
+                        <option th:each="brand : ${brands}" th:value="${brand.brandid}" th:text="${brand.brandname}">
+                        </option>
+                    </select>
+                </div>
+                <div id="find-products" class="col-md-6">
+                    <button class="btn btn-dark" type="button" id="select-brand">Find products</button>
+                </div>
+
+            </div>
+            <div id="append-product" class="row">
+                <!-- <div class="col-md-6" id="product">
+
+                </div> -->
+                <!-- <button class="btn btn-primary" id="continue" type="button">Continue</button> -->
+            </div>
+            <!-- <div class="row">
+                
+            </div> -->
+            <div id="concerns">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>What's your skin type?</p>
+                        <select id="skintype" class="form-control" name="skintype">
+                            <option th:each="skintype : ${skintypes}" th:value="${skintype.skintypeid}"
+                                th:text="${skintype.skintypename}">Type</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                            <p>What finish do you prefer?</p>
+                            <select id="finish" class="form-control" name="finish">
+                                <option th:each="finish : ${finishes}" th:value="${finish.finishid}"
+                                    th:text="${finish.finishtype}">Type</option>
+                            </select>
+                        </div>
+                    <!-- <div class="col-md-6">
+                        <p>What coverage do you prefer?</p>
+                        <select id="coverage" class="form-control" name="coverage">
+                            <option th:each="coverage : ${coverages}" th:value="${coverage.coverageid}"
+                                th:text="${coverage.coveragetype}">Type</option>
+                        </select>
+                    </div> -->
+                </div>
+
+                <div class="row">
+                        <!-- <div class="col-md-6">
+                                <p>What finish do you prefer?</p>
+                                <select id="finish" class="form-control" name="finish">
+                                    <option th:each="finish : ${finishes}" th:value="${finish.finishid}"
+                                        th:text="${finish.finishtype}">Type</option>
+                                </select>
+                            </div> -->
+                    <div class="col-md-6">
+                        <p>Anything you'd like to avoid?</p>
+                        <div id="attribute" class="form-check" th:each="attribute : ${attributes}">
+                            <input class="form-check-input" type="checkbox" th:value="${attribute.attributeid}"
+                                name="a">
+                            <label class="form-check-label" for="attributeid" th:text="${attribute.attributename}">
+                                Ingredient Attribute
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input id="crueltyfree" class="form-check-input" type="checkbox" name="crueltyfree">
+                            <label class="form-check-label" for="crueltyfree"> Cruelty Free?
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="calculate()" class="btn btn-dark">Calculate!</button>
+                <a href="/" class="btn btn-dark">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="/foundation-preferences.js "></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/base.css" type="txt/css">
+        <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+</head>
+
+<body>
+        <div th:replace="~{shared :: nav}"></div>
+    <div class="container">
+        <a href="/admin" class="btn btn-dark">Dashboard</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="guest : ${guests}">
+                    <td>
+                        <a th:text="${guest.guestid}">Username
+                            <br />(Click to edit user)
+                        </a>
+                    </td>
+                    <td th:text="${guest.guestname}">Joe</td>
+                    <td>
+                        <a th:href="@{/editGuest/{guestid}(guestid = ${guest.guestid})}" class="btn btn-dark">Edit
+                            User</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

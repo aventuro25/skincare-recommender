@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/base.css" type="txt/css">
+    <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+<style>
+    #buttons{
+        text-align:center;
+        margin: 0 auto;
+    }
+</style>
+</head>
+
+<body>
+    <div th:replace="~{shared :: nav}"></div>
+    <div class="container">
+        <form type="form" method="POST">
+            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Admin</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:text="${guest.guestid}"></td>
+                        <td th:text="${guest.guestname}"></td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="administrator">
+                                <!-- <label class="form-check-label" for="administrator"> Admin -->
+                                <!-- </label> -->
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- <p th:text="${guest.guestid}"></p>
+            <p th:text="${guest.guestname}"></p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="administrator">
+                <label class="form-check-label" for="administrator"> Admin
+                </label>
+            </div> -->
+            <div id="buttons">
+                    <button type="submit" class="btn btn-dark">Update!</button>
+                    <a href="/" class="btn btn-dark">Cancel</a>
+            </div>
+           
+        </form>
+    </div>
+</body>
+
+</html>
